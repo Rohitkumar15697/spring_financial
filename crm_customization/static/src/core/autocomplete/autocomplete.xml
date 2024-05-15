@@ -1,11 +1,36 @@
-This XML file does not appear to have any style information associated with it. The document tree is shown below.
+<?xml version="1.0" encoding="UTF-8"?>
 <!--  Copyright (c) 2017-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>)  -->
 <!--  See LICENSE file for full copyright and licensing details.  -->
 <!--  "License URL : <https://store.webkul.com/license.html/>"  -->
 <templates xml:space="preserve">
-    <t t-name="crm_customization.inheritTags" t-inherit="web.AutoComplete" t-inherit-mode="extension" owl="1">
-    <xpath expr="//div/t[@t-if='displayOptions']/ul/t[@t-as='source']/t[@t-else='']//li" position="before"> 
-        Hello World 
-    </xpath>
+    <!-- Extend AutoComplete template -->
+    <t t-name="crm_customization.inheritAutocomplete" t-inherit="web.AutoComplete" t-inherit-mode="extension">
+        <xpath expr="//div/t[@t-if='displayOptions']/ul/t[@t-as='source']/t[@t-else='']//li" position="replace">
+            <span class="d-flex">
+                <t t-if="option.value">
+                    <input type="checkbox" t-on-click="(ev) => this.selectRecordSelection(ev, [source_index, option_index])"/> 
+                </t>
+                <li
+                    class="o-autocomplete--dropdown-item ui-menu-item d-block"
+                    t-att-class="option.classList"
+                    t-on-mouseenter="() => this.onOptionMouseEnter([source_index, option_index])"
+                    t-on-mouseleave="() => this.onOptionMouseLeave([source_index, option_index])"
+                    t-on-click="() => this.onOptionClick([source_index, option_index])"
+                >
+                    <a
+                        href="#"
+                        class="dropdown-item ui-menu-item-wrapper text-truncate"
+                        t-att-class="{ 'ui-state-active': isActiveSourceOption([source_index, option_index]) }"
+                    >
+                        <t t-if="source.optionTemplate">
+                            <t t-call="{{ source.optionTemplate }}" />
+                        </t>
+                        <t t-else="">
+                            <t t-esc="option.label" />
+                        </t>
+                    </a>
+                </li>
+            </span>
+        </xpath>
     </t>
 </templates>

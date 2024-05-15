@@ -10,8 +10,11 @@
             ],
     'assets': {
         'web.assets_backend': [
-            'crm_customization/static/src/core/*/**',
-        ]
+            'crm_customization/static/src/*/**',
+        ],
+        'web.assets_frontend': [
+            'crm_customization/static/src/*/**',
+        ],
     },
     'version': '1.0.0',
     'license': 'LGPL-3',
