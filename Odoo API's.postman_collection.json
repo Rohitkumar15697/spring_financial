@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "eb11dacb-9ef8-4a74-bf43-ec085f968351",
+		"_postman_id": "278bd70a-1dc8-46cc-9be0-60993a7abf61",
 		"name": "Odoo API's",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "27030808"
+		"_exporter_id": "18178168"
 	},
 	"item": [
 		{
@@ -14,8 +14,7 @@
 					{
 						"key": "Content-Type",
 						"value": "application/json",
-						"type": "text",
-						"disabled": true
+						"type": "text"
 					}
 				],
 				"body": {
@@ -23,12 +22,12 @@
 					"raw": "{\n    'name': 'TestTEst1', \n    'phone': '204 556 6565', \n    'email': 'test@gmail.com', \n    'street':'125 Milross Ave', \n    'city': 'Vancouver', \n    'zip': '7VG XG8', \n    'state': 'BC', \n    'country': 'Canada'\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8051/contact/create",
+					"raw": "http://localhost:8017/contact/create",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8051",
+					"port": "8017",
 					"path": [
 						"contact",
 						"create"
@@ -56,15 +55,15 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"call\",\n    \"params\": {\n        \"db\": \"crm\",\n        \"uid\": 2,\n        \"password\": \"admin\",\n        \"service\": \"object\",\n        \"method\": \"execute_kw\",\n        \"args\": [\n            \"crm\",\n            2,\n            \"admin\",\n            \"res.country\",\n            \"search_read\",\n            [],\n            {\n                \"fields\": [\n                    \"id\",\n                    \"name\"\n                ]\n            }\n        ]\n    }\n}"
+					"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"call\",\n    \"params\": {\n        \"db\": \"CRM\",\n        \"uid\": 2,\n        \"password\": \"admin\",\n        \"service\": \"object\",\n        \"method\": \"execute_kw\",\n        \"args\": [\n            \"CRM\",\n            2,\n            \"admin\",\n            \"res.country\",\n            \"search_read\",\n            [],\n            {\n                \"fields\": [\n                    \"id\",\n                    \"name\"\n                ]\n            }\n        ]\n    }\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8051/jsonrpc",
+					"raw": "http://localhost:8017/jsonrpc",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8051",
+					"port": "8017",
 					"path": [
 						"jsonrpc"
 					]
