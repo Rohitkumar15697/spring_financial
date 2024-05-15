@@ -19,6 +19,10 @@ class Lead(models.Model):
     def convert_opportunity(self, partner, user_ids=False, team_id=False):
         """Override complete method to get the required customization flow
         """
+        if not self._context.get('opportunity_customization'):
+            return super().convert_opportunity(partner, user_ids, team_id)
+
+        # Create extra opportunity of opportunity type 'technical'
         customer = partner if partner else self.env['res.partner']
         for lead in self:
             if lead.lead_stages =='complete':
@@ -27,7 +31,6 @@ class Lead(models.Model):
                 vals = lead._convert_opportunity_data(customer, team_id)
                 lead.write(vals)
                 
-                # Create extra opportunity of opportunity type 'technical'
                 tech_lead = lead.sudo().copy()
                 vals = tech_lead.with_context(technical_opportunity=True)._convert_opportunity_data(customer, team_id)
                 tech_lead.write(vals)
@@ -41,8 +44,9 @@ class Lead(models.Model):
 
     def _convert_opportunity_data(self, customer, team_id=False):
         upd_values = super()._convert_opportunity_data(customer, team_id)
-        if self._context.get('technical_opportunity'):
-            upd_values['opportunity_type'] = 'technical'
-        else:
-            upd_values['opportunity_type'] = 'business'
+        if self._context.get('opportunity_customization'):
+            if self._context.get('technical_opportunity'):
+                upd_values['opportunity_type'] = 'technical'
+            else:
+                upd_values['opportunity_type'] = 'business'
         return upd_values

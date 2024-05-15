@@ -1,0 +1,11 @@
+This XML file does not appear to have any style information associated with it. The document tree is shown below.
+<!--  Copyright (c) 2017-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>)  -->
+<!--  See LICENSE file for full copyright and licensing details.  -->
+<!--  "License URL : <https://store.webkul.com/license.html/>"  -->
+<templates xml:space="preserve">
+    <t t-name="crm_customization.inheritTags" t-inherit="web.AutoComplete" t-inherit-mode="extension" owl="1">
+    <xpath expr="//div/t[@t-if='displayOptions']/ul/t[@t-as='source']/t[@t-else='']//li" position="before"> 
+        Hello World 
+    </xpath>
+    </t>
+</templates>

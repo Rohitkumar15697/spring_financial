@@ -1,23 +1,24 @@
 import json
 from logging import getLogger
-_logger = getLogger(__name__)
 
 from odoo.http import route, request, Controller
 
 class HttpController(Controller):
     @route('/contact/create', type='http', methods=['POST'], auth="public", csrf=False)
     def create_contact(self, *args, **kwargs):
-        data = json.loads(request.httprequest.data)
         status = "Error"
-        if data:
-            try:
-                contact_data = self.prepare_contact_data(data)
-                contact = request.env['res.partner'].sudo().create(contact_data)
-                if contact:
-                    status = "Success"
-            except Exception as e:
-                status = str(e)
-        return status
+        message = ''
+        try:
+            data = eval(request.httprequest.data.decode('utf-8'))
+            if data:
+                    contact_data = self.prepare_contact_data(data)
+                    contact = request.env['res.partner'].sudo().create(contact_data)
+                    if contact:
+                        message = 'Contact Created Successfully!'
+                        status = "Success"
+        except Exception as e:
+            message = str(e)
+        return json.dumps({'code': status, 'message': message})
     
     def prepare_contact_data(self, data):
         country = data.get('country')

@@ -1,0 +1,76 @@
+{
+	"info": {
+		"_postman_id": "eb11dacb-9ef8-4a74-bf43-ec085f968351",
+		"name": "Odoo API's",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27030808"
+	},
+	"item": [
+		{
+			"name": "create_contact",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    'name': 'TestTEst1', \n    'phone': '204 556 6565', \n    'email': 'test@gmail.com', \n    'street':'125 Milross Ave', \n    'city': 'Vancouver', \n    'zip': '7VG XG8', \n    'state': 'BC', \n    'country': 'Canada'\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8051/contact/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8051",
+					"path": [
+						"contact",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search_country",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"call\",\n    \"params\": {\n        \"db\": \"crm\",\n        \"uid\": 2,\n        \"password\": \"admin\",\n        \"service\": \"object\",\n        \"method\": \"execute_kw\",\n        \"args\": [\n            \"crm\",\n            2,\n            \"admin\",\n            \"res.country\",\n            \"search_read\",\n            [],\n            {\n                \"fields\": [\n                    \"id\",\n                    \"name\"\n                ]\n            }\n        ]\n    }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8051/jsonrpc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8051",
+					"path": [
+						"jsonrpc"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
