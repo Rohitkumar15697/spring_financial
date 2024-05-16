@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="crm_lead_completion_view_form" model="ir.ui.view">
+        <field name="name">crm.lead.completion.form</field>
+        <field name="model">lead.complete.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Complete Lead">
+                <span> Leads can not be converted into Opportunity if it is not in Complete State! </span>
+                <footer>
+                    <button name="lead_mark_as_complete" string="Mark as Complete" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

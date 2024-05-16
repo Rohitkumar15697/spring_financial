@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="crm.lead.stage" id="lead_stage_lead1">
+        <field name="name">New</field>
+    </record>
+    <record model="crm.lead.stage" id="lead_stage_lead2">
+        <field name="name">Under Review</field>
+    </record>
+    <record model="crm.lead.stage" id="lead_stage_lead3">
+        <field name="name">Complete</field>
+    </record>
+</odoo>

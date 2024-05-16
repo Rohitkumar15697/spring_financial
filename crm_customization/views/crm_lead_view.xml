@@ -7,12 +7,27 @@
         <field name="arch" type="xml">
             <!-- Add status bar for Leads form view-->
             <xpath expr="/form//header" position="inside">
-                <field name="lead_stages" widget="statusbar" options="{'clickable': '1'}" invisible="not type == 'lead'"/>
+                <field name="lead_stage_id" widget="statusbar_duration" options="{'clickable': '1'}" invisible="not type == 'lead'"/>
             </xpath>
 
             <!-- Add Opportunity Type field-->
             <xpath expr="/form//group[@name='opportunity_partner']//field[@name='partner_id']" position="after">
                 <field name="opportunity_type"/>
+                <field name="technology_name" invisible="not opportunity_type or opportunity_type == 'business'"/>
+                <field name="business_name" invisible="not opportunity_type or opportunity_type == 'technology'"/>
+            </xpath>
+
+            <!-- Mark lead as complete -->
+            <xpath expr="//header/button[@name='%(crm.action_crm_lead2opportunity_partner)d']" position="before">
+                <field name="is_lead_complete" invisible="1"/>
+                <button 
+                    name="mark_lead_as_complete" 
+                    string="Mark as Complete" 
+                    type="object" 
+                    class="oe_highlight" 
+                    title="Mark as Complete" 
+                    invisible="not active or type != 'lead' or is_lead_complete"
+                />
             </xpath>
         </field>
     </record>

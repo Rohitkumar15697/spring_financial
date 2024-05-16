@@ -6,7 +6,10 @@
     """,
     'depends':['crm'],
     'data':[
+        'security/ir.model.access.csv',
+        'data/data.xml',
         'views/crm_lead_view.xml',
+        'wizard/lead_completion_wizard.xml',
             ],
     'assets': {
         'web.assets_backend': [
