@@ -23,7 +23,7 @@ class Lead(models.Model):
     
     @api.model
     def is_complete_available(self):
-        """It will return Complete stage is available to select or not
+        """It will return Complete stage if available to select or not
         """
         return self.env['crm.lead.stage'].search([('name','=', 'Complete')], limit=1)
 
@@ -35,6 +35,8 @@ class Lead(models.Model):
         self.is_lead_complete = completed
 
     def mark_lead_as_complete(self):
+        """Mark lead as complete if Complete is available to select
+        """
         complete_available = self.is_complete_available()
         if complete_available:
             self.lead_stage_id = complete_available.id
