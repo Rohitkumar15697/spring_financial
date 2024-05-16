@@ -5,7 +5,7 @@ class Lead(models.Model):
     _inherit = "crm.lead"
 
     opportunity_type = fields.Selection([
-        ('technical', 'Technical'),
+        ('technology', 'Technology'),
         ('business', 'Business'),
     ], string="Opportunity Type")
     
@@ -22,7 +22,7 @@ class Lead(models.Model):
         if not self._context.get('opportunity_customization'):
             return super().convert_opportunity(partner, user_ids, team_id)
 
-        # Create extra opportunity of opportunity type 'technical'
+        # Create extra opportunity of opportunity type 'technology'
         customer = partner if partner else self.env['res.partner']
         for lead in self:
             if lead.lead_stages =='complete':
@@ -46,7 +46,7 @@ class Lead(models.Model):
         upd_values = super()._convert_opportunity_data(customer, team_id)
         if self._context.get('opportunity_customization'):
             if self._context.get('technical_opportunity'):
-                upd_values['opportunity_type'] = 'technical'
+                upd_values['opportunity_type'] = 'technology'
             else:
                 upd_values['opportunity_type'] = 'business'
         return upd_values
